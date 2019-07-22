@@ -94,9 +94,9 @@ def getMaxLevel():
     methodsParameter = getMethodsParameter()
     return int(methodsParameter[1])
 
-
 def getFiles(initialDir):
     files = []
+    os.chdir(sys.path[0])
     for root, dirs, filez in os.walk(initialDir):
         for filename in filez:
             if filename.endswith('.f90') or filename.endswith('.F90'):
@@ -359,7 +359,7 @@ def writeCalledFile():
     fName = "allMethodsCalled.txt"
     print("Creating methods called of all files: file " + fName)
     fileCalled = open(fName, 'w')
-    for each in sorted(methodsCalled):
+    for each in sorted(methodsCalled,key=str):
         fileCalled.write(each.__str__() + "\n")
 
 
@@ -375,7 +375,7 @@ def writeMethodsInCallerTreeFile():
     fName = "methodsInCallerTree.txt"
     print("Creating methods in Caller Tree: file " + fName)
     fileInCallerTree = open(fName, 'w')
-    for method in sorted(methodsInCallerTree):
+    for method in sorted(methodsInCallerTree,key=str):
         fileInCallerTree.write(method.__str__() + "\n")
 
 

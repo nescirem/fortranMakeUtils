@@ -58,7 +58,7 @@ for filename in filesInitialDir:
     with open(filename) as file:
         for line in file:
             stringsLine = re.split("\n| |,", line)
-            stringsLine = filter(None, stringsLine)
+            stringsLine = list(filter(None, stringsLine))
             if len(stringsLine) > 0:
                 if stringContinues:
                     strings += stringsLine
